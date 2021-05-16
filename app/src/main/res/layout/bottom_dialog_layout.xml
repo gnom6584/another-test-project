@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="fragment"
+            type="com.testapp.testapplication.usersettings.UserSettingsFragment" />
+
+        <variable
+            name="bottomSheetDialog"
+            type="com.google.android.material.bottomsheet.BottomSheetDialog" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            app:clipToOutline="@{true}"
+            android:id="@+id/second_frame"
+            android:background="@drawable/bottom_dialog_second_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:textAppearance="@style/BottomDialogTextStyle"
+                android:gravity="center"
+                android:text="Сделать фото"
+                app:onClick="@{fragment::takePhotoFromCamera}"
+                android:background="#F2F2F2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+
+            <TextView
+                android:textAppearance="@style/BottomDialogTextStyle"
+                android:gravity="center"
+                android:layout_marginTop="1px"
+                app:onClick="@{fragment::takePhotoFromGallery}"
+                android:text="Выбрать из галери"
+                android:background="#F2F2F2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+        </LinearLayout>
+
+        <TextView
+            app:onClick="@{bottomSheetDialog::dismiss}"
+            android:text="Отменить"
+            android:gravity="center"
+            android:textAppearance="@style/ButtonTextStyle"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="17.5dp"
+            android:layout_marginBottom="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/button_shape"/>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Test application</string>
+    <string name="required_field">Обязательное поле</string>
+    <string name="password_mismatch">Пароли не совпадают</string>
+    <string name="wrong_email_format">Неправильный формат Email\'а</string>
+    <string name="repeat_password">Повторить пароль</string>
+    <string name="password">Пароль</string>
+    <string name="email">Email</string>
+    <string name="patronymic">Отчество</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="registration">Регистрация</string>
+    <string name="authorization">Авторизация</string>
+    <string name="birth_place">Место рождения</string>
+    <string name="organization">Организация</string>
+    <string name="working_position">Должность</string>
+    <string name="birth_date">Дата рождения</string>
+
+    <string name="cars">Авто</string>
+    <string name="business">Бизнес</string>
+    <string name="investments">Инвестиции</string>
+    <string name="sport">Спорт</string>
+    <string name="health">Здоровье</string>
+    <string name="food">Еда</string>
+    <string name="family">Семья, дети</string>
+    <string name="pets">Домашние животные</string>
+    <string name="films">Фильмы</string>
+    <string name="computer_games">Компьютерные игры</string>
+    <string name="music">Музыка</string>
+    <string name="interesting_themes">Интересующие темы</string>
+    <string name="personal_data">Личные данные</string>
+    <string name="save">Сохранить</string>
+    <string name="at_least_one_option_must_be_selected">Должен быть выбран хотя бы один вариант</string>
+
+    <string name="avatar_upload_error">Ошибка загрузки аватара</string>
+    <string name="registration_error">Ошибка регистрации</string>
+    <string name="authorization_error">Ошибка авторизации</string>
+    <string name="update_profile_error">Ошибка сохранения</string>
+
+
+</resources>

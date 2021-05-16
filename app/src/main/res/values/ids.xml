@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="surname_edit_text" type="id"/>
+    <item name="name_edit_text" type="id"/>
+    <item name="patronymic_edit_text" type="id"/>
+    <item name="email_edit_text" type="id"/>
+    <item name="password_edit_text" type="id"/>
+    <item name="repeat_password_edit_text" type="id"/>
+    <item name="birth_place_edit_text" type="id"/>
+    <item name="organization_edit_text" type="id"/>
+    <item name="work_position_edit_text" type="id"/>
+</resources>

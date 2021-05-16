@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <import type="android.view.View" />
+
+        <import type="com.testapp.testapplication.Preference" />
+        
+        <variable
+            name="adapter"
+            type="com.testapp.testapplication.ToastAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.testapp.testapplication.usersettings.UserSettingsViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.testapp.testapplication.usersettings.UserSettingsFragment" />
+    </data>
+
+    <com.testapp.testapplication.customtoast.CustomToastLayout
+        app:custom_toast_layout_messages_listener="@{viewModel.toaster}"
+        app:custom_toast_layout_toast_duration="@{@integer/default_custom_toast_duration}"
+        android:id="@+id/toast_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:custom_toast_layout_adapter="@{adapter}">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:visibility="@{viewModel.isLoading? View.VISIBLE : View.GONE}"
+            android:id="@+id/view"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:lottie_rawRes="@raw/spinner"
+            app:lottie_autoPlay="true"
+            app:lottie_repeatCount="1000000"
+            app:lottie_repeatMode="restart"
+            />
+
+        <ScrollView
+            android:visibility="@{viewModel.isLoading? View.GONE : View.VISIBLE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:requiresFadingEdge="horizontal"
+            android:fadingEdgeLength="80dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:background="@drawable/edit_text_drawable"
+                    android:layout_height="60dp"
+                    android:layout_width="match_parent" />
+
+                <FrameLayout
+                    android:layout_width="172dp"
+                    android:layout_height="172dp"
+                    android:layout_gravity="center_horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/photo_place_holder"
+                        android:layout_width="124dp"
+                        android:layout_height="124dp"
+                        android:src="@color/gray_bb"
+                        android:layout_gravity="center"
+                        />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/photo"
+                        android:layout_width="124dp"
+                        android:layout_height="124dp"
+                        android:layout_gravity="center"
+                        app:imageView_bmp_src="@{viewModel.photo}"
+                        app:onClick="@{fragment::openSelectPictureDialog}"
+                        />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:elevation="30dp"
+                        app:cardCornerRadius="16dp"
+                        android:layout_gravity="end|bottom">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="12.79dp"
+                            android:src="@drawable/ic_photo_icon"
+                            android:layout_gravity="center" />
+
+                    </androidx.cardview.widget.CardView>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TitleTextStyle"
+                    android:text="@string/personal_data">
+
+                </TextView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12sp" />
+
+                <include
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    layout="@layout/text_input_field_layout"
+                    app:header='@{@string/surname}'
+                    app:viewModel="@{viewModel.surname}"
+                    app:id="@{@id/surname_edit_text}"
+                    app:inputType="@{InputType.TYPE_CLASS_TEXT}"
+                    />
+
+
+                <include
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    layout="@layout/text_input_field_layout"
+                    app:header='@{@string/name}'
+                    app:viewModel="@{viewModel.name}"
+                    app:id="@{@id/name_edit_text}"
+                    app:inputType="@{InputType.TYPE_CLASS_TEXT}"
+                    />
+
+                <include
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    layout="@layout/text_input_field_layout"
+                    app:header='@{@string/patronymic}'
+                    app:viewModel="@{viewModel.patronymic}"
+                    app:id="@{@id/patronymic_edit_text}"
+                    app:inputType="@{InputType.TYPE_CLASS_TEXT}"
+                    />
+
+                <include
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    layout="@layout/text_input_field_layout"
+                    app:header='@{@string/birth_place}'
+                    app:viewModel="@{viewModel.birthPlace}"
+                    app:id="@{@id/birth_place_edit_text}"
+                    app:inputType="@{InputType.TYPE_CLASS_TEXT}"
+                    />
+
+
+                <LinearLayout
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="18sp"
+                        android:textAppearance="@style/TextInputFieldHeaderTextStyle"
+                        android:visibility="@{viewModel.birthDate.date != null? View.VISIBLE : View.INVISIBLE}"
+                        android:text='@{@string/birth_date.toUpperCase()}' />
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:textAppearance="@style/TextInputFieldBodyTextStyle"
+                        android:background="@drawable/edit_text_drawable"
+                        android:layout_width="match_parent"
+                        android:layout_height="44sp"
+                        android:text="@string/birth_date"
+                        app:text_by_date_value="@{viewModel.birthDate.date}"
+
+                        app:text_view_as_date_picker_button="@{viewModel.birthDate}"
+                        />
+
+                    <TextView
+                        app:text_by_validation_error="@{viewModel.birthDate.validationError}"
+                        android:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="15sp"
+                        android:layout_marginTop="8dp"
+                        android:textAppearance="@style/TextInputFieldErrorTextStyle" />
+                </LinearLayout>
+
+                <include
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    layout="@layout/text_input_field_layout"
+                    app:header='@{@string/organization}'
+                    app:viewModel="@{viewModel.organization}"
+                    app:id="@{@id/organization_edit_text}"
+                    app:inputType="@{InputType.TYPE_CLASS_TEXT}"
+                    />
+
+                <include
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    layout="@layout/text_input_field_layout"
+                    app:header='@{@string/working_position}'
+                    app:viewModel="@{viewModel.workingPosition}"
+                    app:id="@{@id/work_position_edit_text}"
+                    app:inputType="@{InputType.TYPE_CLASS_TEXT}"
+                    />
+
+                <TextView
+                    android:layout_marginTop="34dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TitleTextStyle"
+                    android:text="@string/interesting_themes"/>
+
+                <include
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/cars}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Cars.ordinal()]}"
+                    />
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/business}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Business.ordinal()]}"
+                    />
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/investments}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Investments.ordinal()]}"
+                    />
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/sport}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Sport.ordinal()]}"
+                    />
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/health}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Health.ordinal()]}"
+                    />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/food}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Food.ordinal()]}"
+                    />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/family}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Family.ordinal()]}"
+                    />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/pets}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Pets.ordinal()]}"
+                    />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/films}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Films.ordinal()]}"
+                    />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/computer_games}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.ComputerGames.ordinal()]}"
+                    />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    layout="@layout/check_box_input_field_layout"
+                    app:header="@{@string/music}"
+                    app:viewModel="@{viewModel.preferences.checkboxes[Preference.Music.ordinal()]}"
+                    />
+
+                <TextView
+                    android:layout_marginStart="16dp"
+                    app:text_by_validation_error="@{viewModel.preferences.validationError}"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="15sp"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextInputFieldErrorTextStyle" />
+
+                <FrameLayout
+                    android:visibility="@{viewModel.isLoading? View.GONE : View.VISIBLE}"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="29dp"
+                    android:layout_marginTop="27.5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/button_shape"
+                    app:onClick="@{viewModel::updateProfile}">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textAppearance="@style/ButtonTextStyle"
+                        android:text="@string/save" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </com.testapp.testapplication.customtoast.CustomToastLayout>
+</layout>
